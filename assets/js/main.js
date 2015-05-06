@@ -83,7 +83,6 @@ function mainLoop()
 
 function loadingUpdate(e)
 {
-	console.log(e.amount);
 	if(e.amount >= 1)
 	{
 		loaded = true;

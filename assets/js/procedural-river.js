@@ -134,7 +134,7 @@ var BIGRIVER = {
 		var sunMat = new THREE.MeshBasicMaterial( { map: sunTex, side: THREE.DoubleSide, transparent : true, depthWrite:true  } );
 		sunMat.opacity = .3;
 
-		var geometry = new THREE.PlaneGeometry(5000, 5000, 4, 4);
+		var geometry = new THREE.PlaneBufferGeometry(5000, 5000, 4, 4);
 		this.sun = new THREE.Mesh( geometry, sunMat );
 		this.sun.position.set(0, 2, -3000);
 		this.sun.rotation.y =  Math.PI;
@@ -150,7 +150,7 @@ var BIGRIVER = {
 		var moonMat = new THREE.MeshBasicMaterial( { map: moonTex, side: THREE.FrontSide, transparent : true, depthWrite:false } );
 		moonMat.fog = false;
 
-		var geometry = new THREE.PlaneGeometry(4000, 4000, 4, 4);
+		var geometry = new THREE.PlaneBufferGeometry(4000, 4000, 4, 4);
 		this.moon = new THREE.Mesh( geometry, moonMat );
 		this.moon.position.set(0, 1300, -2000);
 		this.moon.rotation.y =  Math.PI;
@@ -192,7 +192,7 @@ var BIGRIVER = {
 	        transparent:    true
 	    });
 
-		this.stars = new THREE.ParticleSystem( this.starsGeometry, shaderMaterial );
+		this.stars = new THREE.PointCloud( this.starsGeometry, shaderMaterial );
 		this.stars.sortParticles = false;
 		this.stars.position.y = 3200;
 		this.stars.position.z = 4100;
@@ -245,7 +245,7 @@ var BIGRIVER = {
 		        depthWrite: false
 		    });
 
-			var rain = new THREE.ParticleSystem( rainGeometry, shaderMaterial );;
+			var rain = new THREE.PointCloud( rainGeometry, shaderMaterial );;
 			this.Scene.add( rain );
 
 			for(var a = 0; a < rain.geometry.vertices.length; a++ )
@@ -256,7 +256,6 @@ var BIGRIVER = {
 
 	    	rain.position.y = (spreadY * .6) * (i %2);
 
-	    	console.log(rain.position.y);
 	    	rain.position.z = -3000;
 
 	    	var rainSpeed =15+((i %2) * 10);
@@ -281,7 +280,7 @@ var BIGRIVER = {
 			fog: true
 		});
 		var aMeshMirror = new THREE.Mesh(
-			new THREE.PlaneGeometry(inParameters.width * 500, inParameters.height * 500, 5, 5), 
+			new THREE.PlaneBufferGeometry(inParameters.width * 500, inParameters.height * 500, 5, 5), 
 			this.Water.material
 		);
 		aMeshMirror.add(this.Water);
@@ -332,12 +331,12 @@ var BIGRIVER = {
 
 			size  = parameters[i][1];
 
-			var material = new THREE.ParticleSystemMaterial( { size: size, map: map } );
+			var material = new THREE.PointCloudMaterial( { size: size, map: map } );
 			material.transparent = true;
 			//material.blending = THREE.AdditiveBlending;
 			//material.depthTest = false;
 
-			particles = new THREE.ParticleSystem( geometry, material );
+			particles = new THREE.PointCloud( geometry, material );
 			particles.position.x = i % 2 == 0 ? -1000 : 1000;
 			particles.position.y = 50;
 			particles.position.z = this.Camera.position.z + 100;
@@ -376,13 +375,13 @@ var BIGRIVER = {
 
 			size  = parameters[i][1];
 
-			var material = new THREE.ParticleSystemMaterial( { size: size, map: map } );
+			var material = new THREE.PointCloudMaterial( { size: size, map: map } );
 			material.transparent = true;
 			material.blending = THREE.AdditiveBlending;
 			material.opacity = .3;
 			material.depthTest = false;
 
-			particles = new THREE.ParticleSystem( geometry, material );
+			particles = new THREE.PointCloud( geometry, material );
 			particles.rotation.x = Math.random() * 6;
 			particles.rotation.y = Math.random() * 6;
 			particles.rotation.z = Math.random() * 6;
@@ -444,7 +443,7 @@ var BIGRIVER = {
 
 		var mountainsMat1 = new THREE.MeshBasicMaterial( { map: mountainsTex, side: THREE.FrontSide, transparent : true, opacity:.65, depthWrite:false } );
 
-		var geometry = new THREE.PlaneGeometry(inParameters.width,inParameters.width, 4, 4);
+		var geometry = new THREE.PlaneBufferGeometry(inParameters.width,inParameters.width, 4, 4);
 		var planeMesh= new THREE.Mesh( geometry, mountainsMat1 );
 		planeMesh.position.set(0, -2300, 3000);
 		planeMesh.rotation.y =  Math.PI;
@@ -452,7 +451,7 @@ var BIGRIVER = {
 
 		var mountainsMat2 = new THREE.MeshBasicMaterial( { map: mountainsTex, side: THREE.BackSide, transparent : true, opacity:.3, depthWrite:false } );
 
-		var geometry = new THREE.PlaneGeometry(inParameters.width,inParameters.width, 4, 4);
+		var geometry = new THREE.PlaneBufferGeometry(inParameters.width,inParameters.width, 4, 4);
 		var planeMesh= new THREE.Mesh( geometry, mountainsMat2 );
 		planeMesh.position.set(1500, -2100, 3500);
 		this.Scene.add(planeMesh);
@@ -460,7 +459,6 @@ var BIGRIVER = {
 
 	addObjectsAfterLoad: function()
 	{
-		this.introTextSprite.visible = true;
 	},
 	
 	loadSkyBox:  function(type)
@@ -530,7 +528,7 @@ var BIGRIVER = {
 				var randScale = (Math.random() * 80);
 				var spriteMaterial = new THREE.MeshBasicMaterial( { map: randomMap, side: THREE.FrontSide, transparent : true } );
 
-				var geometry = new THREE.PlaneGeometry(512-randScale, 512-randScale, 1, 1);
+				var geometry = new THREE.PlaneBufferGeometry(512-randScale, 512-randScale, 1, 1);
 				treeSprite = new THREE.Mesh( geometry, spriteMaterial );
 				treeSprite.position.z = (inParameters.width*-.5)+(inParameters.width * (r / totalRows))+(Math.random()*200);
 				treeSprite.position.x = (inParameters.width*-.65)+(c*700)+(Math.random()*200);
@@ -562,7 +560,7 @@ var BIGRIVER = {
 				var randScale = (Math.random() * 80);
 				var spriteMaterial = new THREE.MeshBasicMaterial( { map: randomMap, side: THREE.FrontSide, transparent : true } );
 
-				var geometry = new THREE.PlaneGeometry(512-randScale, 512-randScale, 1, 1);
+				var geometry = new THREE.PlaneBufferGeometry(512-randScale, 512-randScale, 1, 1);
 				treeSprite = new THREE.Mesh( geometry, spriteMaterial );
 				treeSprite.position.z = (inParameters.width*-.5)+(inParameters.width * (r / totalRows))+(Math.random()*200);
 				treeSprite.position.x = (inParameters.width*.65)-(c*700)-(Math.random()*200);
