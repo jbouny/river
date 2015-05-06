@@ -1,0 +1,167 @@
+body {
+	background: #000 ; /**url('../img/bg_tex.png');**/
+	margin : 0px;
+	padding : 0px;
+	color : #000;
+	font-family: 'Source Sans Pro', 'Arial', 'Sans Serif';
+}
+
+#wrapper
+{
+	width:100%;
+	position:relative;
+}
+
+#canvas-3d
+{
+	position:relative;
+	display:none;
+	top:-200px;
+}
+
+
+#loading
+{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:850px;
+	z-index:9;
+	top:-50px;
+	background:transparent url('../img/loading_overlay.png') no-repeat center;
+}
+
+#loading-behind
+{
+	display:none;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:515px;
+	z-index:8;
+	background:rgba(255,255,255, .7);
+}
+
+#scene-selector
+{
+	position:fixed;
+	left:0;
+	bottom:-150px;
+	width:100%;
+	height:150px;
+	background:rgba(0,0,0,.65);
+	z-index:500;
+
+	-webkit-transition: bottom 1s ease-in-out;
+	-moz-transition: bottom 1s ease-in-out;
+	-o-transition: bottom 1s ease-in-out;
+	transition: bottom 1s ease-in-out;
+}
+
+#scene-selector.open
+{
+	bottom:0;
+
+	-webkit-transition: bottom 1s ease-in-out;
+	-moz-transition: bottom 1s ease-in-out;
+	-o-transition: bottom 1s ease-in-out;
+	transition: bottom 1s ease-in-out;
+}
+
+#scene-selector .handle
+{
+	position: absolute;
+	width:170px;
+	height:30px;
+	top:0;
+	left:50%;
+	margin-left:-85px;
+	line-height:30px;
+	text-align:center;
+	text-decoration: none;
+	text-transform: uppercase;
+	color:#fff;
+	font-weight:300;
+	background:rgba(0,0,0,.65);
+	border-radius:5px 5px 0 0;
+}
+
+#scene-selector .handle.show
+{
+	top:-30px;
+	-webkit-transition: top 1s ease-in-out;
+	-moz-transition: top 1s ease-in-out;
+	-o-transition: top 1s ease-in-out;
+	transition: top 1s ease-in-out;
+}
+
+#scene-selector ul
+{
+	margin:0;
+	padding:0;
+}
+
+#scene-selector li
+{
+	position: relative;
+	width:22%;
+	height:120px;
+	margin:10px 1.5%;
+	border-radius: 3px;
+	float:left;
+	background-repeat:no-repeat;
+	background-position: center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	overflow: hidden;
+}
+
+#scene-selector li a
+{
+	display:block;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	text-decoration: none;
+}
+
+#scene-selector li a span
+{
+	display:block;
+	position: absolute;
+	bottom:0;
+	width:100%;
+	height:25px;
+	line-height:25px;
+	color:#fff;
+	font-weight: 300;
+	text-align: center;
+	background:rgba(0,0,0,.7);
+	font-size:.8em;
+}
+
+#scene-selector li.morning
+{
+	background-image:url('../img/river_morning.jpg');
+}
+
+#scene-selector li.day
+{
+	background-image:url('../img/river_day.jpg');
+}
+
+#scene-selector li.night
+{
+	background-image:url('../img/river_night.jpg');
+}
+
+#scene-selector li.rain
+{
+	background-image:url('../img/river_rain.jpg');
+}
